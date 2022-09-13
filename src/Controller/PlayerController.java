@@ -1,6 +1,8 @@
+import Controller.Controller;
+
 import java.awt.event.KeyEvent;
 
-public class PlayerController implements Controller{
+public class PlayerController implements Controller {
     private Input input;
     public PlayerController(Input input){
         this.input = input;

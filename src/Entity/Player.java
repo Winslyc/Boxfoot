@@ -1,3 +1,5 @@
+import Controller.Controller;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
