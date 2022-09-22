@@ -1,4 +1,6 @@
+package Game;
 
+import Game.Game;
 
 public class GameLoop implements Runnable{
 
@@ -26,11 +28,13 @@ public class GameLoop implements Runnable{
             accumulator += lastRenderTimeInSeconds;
             lastUpdate = currentTime;
 
-            while(accumulator > updateRate){
+        if(accumulator >= updateRate) {
+            while (accumulator > updateRate) {
                 update();
-                accumulator -= updateRate;
+                accumulator-=updateRate;
             }
             render();
+        }
             printStats();
         }
 
