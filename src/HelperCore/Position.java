@@ -1,3 +1,5 @@
+package HelperCore;
+
 // provide positioning for an object.
 public class Position {
     private int x;
@@ -13,5 +15,12 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    public void apply(Movement movement) {
+        Vector2D vector = movement.getVector();
+        x += vector.getX();
+        y += vector.getY();
+
     }
 }

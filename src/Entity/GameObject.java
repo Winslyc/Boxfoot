@@ -1,3 +1,8 @@
+package Entity;
+
+import HelperCore.Position;
+import HelperCore.Size;
+
 import java.awt.*;
 // Abstract class to represent objects in the game example: players, enemies, guns, powerups.
 public abstract class GameObject {

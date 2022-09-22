@@ -1,3 +1,5 @@
+package HelperCore;
+
 //show size of an object.
 public class Size {
     private int Width;

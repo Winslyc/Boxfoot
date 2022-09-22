@@ -1,31 +1,17 @@
+package Entity;
+
 import Controller.Controller;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends GameObject{
-private Controller controller;
+public class Player extends MovingEntity{
 public Player(Controller controller){
-    super();
-    this.controller=controller;
+    super(controller);
 }
     @Override
     public void update() {
-    int deltaX = 0;
-    int deltaY = 0;
-    if(controller.isRequestingUp()){
-        deltaY--;
-    }
-    if(controller.isRequestingDown()){
-            deltaY++;
-    }
-    if(controller.isRequestingRight()){
-            deltaX++;
-    }
-    if(controller.isRequestingLeft()){
-            deltaX--;
-        }
-    position =new Position(position.getX() + deltaX, position.getY() + deltaY);
+    super.update();
     }
 
     @Override
