@@ -24,4 +24,8 @@ public class Vector2D {
         return y;
     }
 
+    public double length() {
+        return (x * x + y * y);
+
+    }
 }

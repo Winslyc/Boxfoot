@@ -1,6 +1,7 @@
 package Display;
 
 import Game.Game;
+import Game.state.State;
 import Input.Input;
 
 import javax.swing.*;
@@ -30,13 +31,13 @@ public class Display extends JFrame {
         //Creates buffer for screens to load
         canvas.createBufferStrategy(3);
     }
-    public void render(Game game){
+    public void render(State state){//Renders Background for screen to be Drawn To
         BufferStrategy bufferStrategy= canvas.getBufferStrategy();
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
-        renderer.render(game, graphics);
+        renderer.render(state, graphics);
         graphics.dispose();
         bufferStrategy.show();
     }

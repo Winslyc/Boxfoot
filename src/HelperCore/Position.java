@@ -9,6 +9,14 @@ public class Position {
         this.y = y;
     }
 
+    public void setX(int x) {
+        this.x=x;
+    }
+
+    public void setY(int y) {
+        this.y=y;
+    }
+
     public int getX() {
         return x;
     }
@@ -17,10 +25,11 @@ public class Position {
         return y;
     }
 
-    public void apply(Movement movement) {
-        Vector2D vector = movement.getVector();
+    public void apply(Motion motion) {
+        Vector2D vector = motion.getVector();
         x += vector.getX();
         y += vector.getY();
+        System.out.println( x + " " + y);
 
     }
 }

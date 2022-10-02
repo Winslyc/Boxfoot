@@ -2,7 +2,7 @@ package Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-public class Input implements KeyListener{
+public class Input implements KeyListener{// Creates Key listeners and allows for input to game.
     private boolean[] pressed;
     public Input(){
         pressed = new boolean[255];

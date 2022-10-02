@@ -3,10 +3,10 @@ package Game;
 import Game.Game;
 
 public class GameLoop implements Runnable{
-
+    public static final int UPDATES_PER_SECOND =60;
     private Game game; // Initializing game for Gameloop to run.
     private boolean running;
-    private final double updateRate = 1.0d/60.0d;
+    private final double updateRate = 1.0d/UPDATES_PER_SECOND;
 
     private long nextStatTime;
     private int fps, ups;
