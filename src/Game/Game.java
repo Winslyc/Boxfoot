@@ -5,32 +5,34 @@ import Display.Display;
 import Entity.Enemy;
 import Entity.GameObject;
 import Entity.Player;
+import Game.state.GameState;
+import Game.state.State;
+import HelperCore.Size;
 import Input.Input;
+import gfx.SpriteLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    public static int SPRITE_SIZE = 64;
     private Display display;
-    private List<GameObject> gameObjects;
     private Input input;
-
+    private State state;
     // passing in parameters for game size.
     public Game(int width, int height){
         input=new Input();
         display = new Display(width,height, input);
-        gameObjects = new ArrayList<>();
-        gameObjects.add(new Player(new PlayerController(input)));
+        state = new GameState(new Size(width, height), input);
+
          }
-    public void update(){
-        gameObjects.forEach(gameObject -> gameObject.update());
-    }
+         public void update(){
+        state.update();
+         }
     public void render(){
-        display.render(this);
+        display.render(state);
 
     }
 
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
-    }
+
 }

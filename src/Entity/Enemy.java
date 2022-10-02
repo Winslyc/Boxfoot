@@ -1,13 +1,15 @@
 package Entity;
 
 import Controller.Controller;
+import gfx.SpriteLibrary;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Enemy extends MovingEntity{
     public Enemy(Controller controller) {
-        super(controller);
+        //TODO come back to this to  intialize sprite library properly.
+        super(controller, new SpriteLibrary());
     }
 
     @Override
