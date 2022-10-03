@@ -1,9 +1,7 @@
 package Game.state;
 
-import Controller.PlayerController;
 import Display.Camera;
 import Entity.GameObject;
-import Entity.Player;
 import Game.Time;
 import HelperCore.Position;
 import HelperCore.Size;
@@ -14,6 +12,7 @@ import gfx.SpriteLibrary;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public abstract class State {
@@ -62,5 +61,10 @@ public abstract class State {
     public Position getRandomPosition() {
 
         return gameMap.getRandomPosition();
+    }
+
+    public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
+        return gameObjects.stream().filter(other -> other.collidesWith(gameObject))
+                .collect(Collectors.toList());
     }
 }

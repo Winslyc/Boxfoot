@@ -5,16 +5,28 @@ import Game.state.State;
 import HelperCore.Position;
 import HelperCore.Size;
 
+import java.awt.*;
 import java.util.Optional;
 // Camera Follows the Player Objects and other OBjects of interest around in the game. For instance if a boss enters on SCreen It will show the boss's first entrance then return to the player.
 public class Camera {
+    private static final int SAFETY_SPACE = 5;
     Position position;
     private Size windowSize;
     private Optional<GameObject> objectwithFocus;
+    private Rectangle viewBounds;
 
     public Camera(Size windowSize) {
         this.position=new Position(0, 0);
         this.windowSize=windowSize;
+        calculateViewBounds();
+    }
+
+    private void calculateViewBounds() {
+        viewBounds = new Rectangle((int) position.getX(),
+                (int) position.getY(),
+                windowSize.getWidth() + SAFETY_SPACE,
+                windowSize.getHeight() +SAFETY_SPACE
+        );
     }
 
     public Position getPosition() {
@@ -34,6 +46,7 @@ public class Camera {
             this.position.setY((int)objectPosition.getY() - windowSize.getHeight() / 2);
 
             clampWithinBounds(state);
+            calculateViewBounds();
         }
     }
 
@@ -55,5 +68,14 @@ public class Camera {
 
     public Size getWindowSize() {
         return windowSize;
+    }
+
+    public boolean isInView(GameObject gameObject) {
+        return viewBounds.intersects(
+                gameObject.getPosition().getX(),
+                gameObject.getPosition().getY(),
+                gameObject.getSize().getWidth(),
+                gameObject.getSize().getHeight()
+        );
     }
 }

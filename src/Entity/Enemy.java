@@ -13,6 +13,11 @@ public class Enemy extends MovingEntity{
     }
 
     @Override
+    protected void handleCollision(GameObject other) {
+
+    }
+
+    @Override
     public Image getSprite() {
         BufferedImage image=new BufferedImage(size.getWidth(), size.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics=image.createGraphics();

@@ -29,7 +29,7 @@ public class GameLoop implements Runnable{
             lastUpdate = currentTime;
 
         if(accumulator >= updateRate) {
-            while (accumulator > updateRate) {
+            while (accumulator >= updateRate) {
                 update();
                 accumulator-=updateRate;
             }
@@ -50,12 +50,12 @@ public class GameLoop implements Runnable{
     }
 
     private void update() {
-        fps++;ups++;
+        ups++;
         game.update();
     }
 
     private void render() {
-        ups++;
+        fps++;
         game.render();
     }
 }

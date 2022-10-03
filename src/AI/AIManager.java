@@ -22,7 +22,6 @@ public class AIManager {
     }
 
     private void transitionTo(String nextState) {
-        System.out.println("Transitioning to " + nextState);
         switch (nextState){
 
             case "stand": currentAIState = new Stand();

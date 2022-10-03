@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class AnimationManager {
+    private String currentAnimationName;
     private SpriteSet spriteSet;
     private BufferedImage currentAnimationSheet;
     private int currentFrameTime;
@@ -46,7 +47,11 @@ public class AnimationManager {
         }
     }
     public void playAnimation(String name){ //Pulls Image from Resources to make an animation.
-        this.currentAnimationSheet = (BufferedImage) spriteSet.get(name);
+        if(!name.equals(currentAnimationName)) {
+            this.currentAnimationSheet=(BufferedImage) spriteSet.get(name);
+            currentAnimationName = name;
+            frameIndex = 0;
+        }
 
     }
 }
