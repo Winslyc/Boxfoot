@@ -52,4 +52,8 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
 
         return animationManager.getSprite();
     }
+
+    public Object getController() {
+        return controller;
+    }
 }

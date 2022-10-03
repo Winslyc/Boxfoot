@@ -5,6 +5,7 @@ import Display.Camera;
 import Entity.GameObject;
 import Entity.Player;
 import Game.Time;
+import HelperCore.Position;
 import HelperCore.Size;
 import Input.Input;
 import Maps.GameMap;
@@ -56,5 +57,10 @@ public abstract class State {
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public Position getRandomPosition() {
+
+        return gameMap.getRandomPosition();
     }
 }

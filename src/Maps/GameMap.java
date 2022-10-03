@@ -1,6 +1,7 @@
 package Maps;
 
 import Game.Game;
+import HelperCore.Position;
 import HelperCore.Size;
 import gfx.SpriteLibrary;
 
@@ -31,5 +32,11 @@ public class GameMap {
 
     public int getHeight() {
         return tiles[0].length * Game.SPRITE_SIZE;
+    }
+
+    public Position getRandomPosition() {
+        double x = Math.random() * tiles.length * Game.SPRITE_SIZE;
+        double y = Math.random() * tiles[0].length * Game.SPRITE_SIZE;
+        return new Position(x, y);
     }
 }

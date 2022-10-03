@@ -12,8 +12,8 @@ public class Renderer {
         Camera camera = state.getCamera();
         state.getGameObjects().forEach(gameObject -> graphics.drawImage(
                 gameObject.getSprite(),
-                gameObject.getPosition().getX() - camera.getPosition().getX() - gameObject.getSize().getWidth() / 2,
-                gameObject.getPosition().getY() - camera.getPosition().getY() - gameObject.getSize().getHeight() / 2,
+                (int)gameObject.getPosition().getX() - (int)camera.getPosition().getX() - gameObject.getSize().getWidth() / 2,
+                (int)gameObject.getPosition().getY() - (int)camera.getPosition().getY() - gameObject.getSize().getHeight() / 2,
                 null));
 
     }
@@ -25,8 +25,8 @@ public class Renderer {
             for (int y=0; y < tiles[ 0 ].length; y++) {
                 graphics.drawImage(
                         tiles[x][y].getSprite(),
-                        x * Game.SPRITE_SIZE - camera.getPosition().getX(),
-                        y * Game.SPRITE_SIZE - camera.getPosition().getY(),
+                        x * Game.SPRITE_SIZE - (int)camera.getPosition().getX(),
+                        y * Game.SPRITE_SIZE - (int)camera.getPosition().getY(),
                         null);
 
 

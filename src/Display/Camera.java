@@ -30,8 +30,8 @@ public class Camera {
     public void update(State state) {// Take in a saved state of a game and then updates the camera's movement/focus.
         if (objectwithFocus.isPresent()) {
             Position objectPosition=objectwithFocus.get().getPosition();
-            this.position.setX(objectPosition.getX() - windowSize.getWidth() / 2);
-            this.position.setY(objectPosition.getY() - windowSize.getHeight() / 2);
+            this.position.setX((int)objectPosition.getX() - windowSize.getWidth() / 2);
+            this.position.setY((int)objectPosition.getY() - windowSize.getHeight() / 2);
 
             clampWithinBounds(state);
         }
