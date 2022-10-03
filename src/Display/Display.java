@@ -29,7 +29,7 @@ public class Display extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         //Creates buffer for screens to load
-        canvas.createBufferStrategy(3);
+        canvas.createBufferStrategy(2);
     }
     public void render(State state){//Renders Background for screen to be Drawn To
         BufferStrategy bufferStrategy= canvas.getBufferStrategy();

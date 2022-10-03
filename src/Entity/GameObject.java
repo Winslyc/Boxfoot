@@ -1,6 +1,7 @@
 package Entity;
 
 import Game.state.State;
+import HelperCore.CollisionBox;
 import HelperCore.Position;
 import HelperCore.Size;
 
@@ -23,6 +24,8 @@ public abstract class GameObject {
     public Size getSize(){
         return size;
     }
+    public abstract CollisionBox getCollisionBox();
+    public abstract boolean collidesWith(GameObject gameObject);
 
     public Position getPosition() {
         return position;

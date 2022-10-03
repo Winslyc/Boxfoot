@@ -2,9 +2,10 @@ package HelperCore;
 
 // provide positioning for an object.
 public class Position {
-    private int x;
-    private int y;
-    public Position (int x, int y){
+    public static int PROXIMITY_RANGE = 5;
+    private double x;
+    private double y;
+    public Position (double x, double y){
         this.x = x;
         this.y = y;
     }
@@ -17,11 +18,11 @@ public class Position {
         this.y=y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -29,7 +30,12 @@ public class Position {
         Vector2D vector = motion.getVector();
         x += vector.getX();
         y += vector.getY();
+    }
+    public void show(){
         System.out.println( x + " " + y);
+    }
 
+    public boolean isInRangeOf(Position position) {
+        return Math.abs(x - position.getX()) < Position.PROXIMITY_RANGE && Math.abs(y - position.getY()) < Position.PROXIMITY_RANGE;
     }
 }
