@@ -11,13 +11,15 @@ import java.awt.image.BufferStrategy;
 public class Display extends JFrame {
     private Canvas canvas;
     private Renderer renderer;
-
+    private DebugRenderer debugRenderer;
+    private boolean debugMode = true;
     public Display(int width, int height, Input input){
         setTitle("Box Foot");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
         this.renderer = new Renderer();
+        this.debugRenderer = new DebugRenderer();
 
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
@@ -38,6 +40,11 @@ public class Display extends JFrame {
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
         renderer.render(state, graphics);
+
+
+        if(debugMode) {
+            debugRenderer.render(state, graphics);
+        }
         graphics.dispose();
         bufferStrategy.show();
     }

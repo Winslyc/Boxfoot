@@ -15,7 +15,7 @@ public class Renderer {
         state.getGameObjects().stream().filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> graphics.drawImage(
                 gameObject.getSprite(),
-                (int)gameObject.getPosition().getX() - (int)camera.getPosition().getX() - gameObject.getSize().getWidth() / 2,
+                (int)gameObject.getPosition().getX()  - (int)camera.getPosition().getX() - gameObject.getSize().getWidth() / 2 ,
                 (int)gameObject.getPosition().getY() - (int)camera.getPosition().getY() - gameObject.getSize().getHeight() / 2,
                 null));
 

@@ -3,10 +3,12 @@ package Entity;
 import Controller.Controller;
 import Entity.action.Action;
 import Entity.effect.Effect;
+import Game.Game;
 import Game.state.State;
 import HelperCore.CollisionBox;
 import HelperCore.Direction;
 import HelperCore.Motion;
+import HelperCore.Size;
 import gfx.AnimationManager;
 import gfx.SpriteLibrary;
 
@@ -22,7 +24,9 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
     protected Direction direction;
     protected List<Effect> effects;
     protected Optional<Action> action;
+    private int collisionBoxOffset = 10;
 
+    protected Size collisionBoxSize;
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary){
         super();
         this.controller = controller;
@@ -32,6 +36,7 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
         this.animationManager = new AnimationManager(spriteLibrary.getUnit("dave"));
         effects = new ArrayList<>();
         action = Optional.empty();
+        this.collisionBoxSize = new Size(16, 32);
     }
     private void decideAnimation(){
         if(action.isPresent()){
@@ -72,10 +77,10 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
     public CollisionBox getCollisionBox() {
         return new CollisionBox(
                 new Rectangle(
-                (int) position.getX(),
-                (int) position.getY(),
-                size.getWidth(),
-                size.getHeight()
+                (int) position.getX() - collisionBoxOffset ,
+                (int) position.getY() - collisionBoxOffset,
+                collisionBoxSize.getWidth(),
+                collisionBoxSize.getHeight()
 
              )
         );
