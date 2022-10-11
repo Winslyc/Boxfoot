@@ -21,6 +21,7 @@ public class Camera {
         calculateViewBounds();
     }
 
+
     private void calculateViewBounds() {
         viewBounds = new Rectangle((int) position.getX(),
                 (int) position.getY(),

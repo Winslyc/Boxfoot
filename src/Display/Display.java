@@ -1,6 +1,5 @@
 package Display;
 
-import Game.Game;
 import Game.state.State;
 import Input.Input;
 
@@ -12,7 +11,7 @@ public class Display extends JFrame {
     private Canvas canvas;
     private Renderer renderer;
     private DebugRenderer debugRenderer;
-    private boolean debugMode = true;
+
     public Display(int width, int height, Input input){
         setTitle("Box Foot");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,7 +32,7 @@ public class Display extends JFrame {
         //Creates buffer for screens to load
         canvas.createBufferStrategy(2);
     }
-    public void render(State state){//Renders Background for screen to be Drawn To
+    public void render(State state, boolean debugMode){//Renders Background for screen to be Drawn To
         BufferStrategy bufferStrategy= canvas.getBufferStrategy();
         Graphics graphics = bufferStrategy.getDrawGraphics();
 

@@ -3,12 +3,8 @@ package Entity;
 import Controller.Controller;
 import Entity.action.Action;
 import Entity.effect.Effect;
-import Game.Game;
 import Game.state.State;
-import HelperCore.CollisionBox;
-import HelperCore.Direction;
-import HelperCore.Motion;
-import HelperCore.Size;
+import HelperCore.*;
 import gfx.AnimationManager;
 import gfx.SpriteLibrary;
 
@@ -24,7 +20,7 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
     protected Direction direction;
     protected List<Effect> effects;
     protected Optional<Action> action;
-    private int collisionBoxOffset = 10;
+    private int collisionBoxOffset = 10; // used 2 center Collision Box around players
 
     protected Size collisionBoxSize;
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary){
@@ -36,7 +32,7 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
         this.animationManager = new AnimationManager(spriteLibrary.getUnit("dave"));
         effects = new ArrayList<>();
         action = Optional.empty();
-        this.collisionBoxSize = new Size(16, 32);
+        this.collisionBoxSize = new Size(16, 45);
     }
     private void decideAnimation(){
         if(action.isPresent()){
@@ -75,10 +71,12 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
 
     @Override
     public CollisionBox getCollisionBox() {
+        Position positionWithMotion = Position.copyOf(position);
+        positionWithMotion.apply((motion));
         return new CollisionBox(
                 new Rectangle(
-                (int) position.getX() - collisionBoxOffset ,
-                (int) position.getY() - collisionBoxOffset,
+                (int) positionWithMotion.getX() - collisionBoxOffset ,
+                (int) positionWithMotion.getY() - (2*collisionBoxOffset),
                 collisionBoxSize.getWidth(),
                 collisionBoxSize.getHeight()
 
@@ -93,7 +91,7 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
         if(!action.isPresent()) {
             motion.update(controller);
         } else {
-            motion.stop();
+            motion.stop(true, true);
         }
     }
 
@@ -140,5 +138,19 @@ public abstract class MovingEntity extends GameObject {// Abstract class updates
 
     public void addEffect(Effect effect) {
         effects.add(effect);
+    }
+    public boolean willCollideX(GameObject other){
+        CollisionBox otherBox = other.getCollisionBox();
+        Position positionWithXApplied = Position.copyOf(position);
+        positionWithXApplied.applyX(motion);
+
+        return  CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherBox);
+    }
+    public boolean willCollideY(GameObject other){
+        CollisionBox otherBox = other.getCollisionBox();
+        Position positionWithYApplied = Position.copyOf(position);
+        positionWithYApplied.applyY(motion);
+
+        return  CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherBox);
     }
 }

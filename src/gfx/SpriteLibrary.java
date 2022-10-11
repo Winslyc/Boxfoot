@@ -39,6 +39,8 @@ public class SpriteLibrary {
                     ImageUtils.loadImage(path + "/" + fileName)
             );
         }
+    }
+    private void loadWeapons(String path){
 
     }
     private void loadSpritesFromDisk(){
